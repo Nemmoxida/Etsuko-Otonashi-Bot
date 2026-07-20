@@ -1,0 +1,5 @@
+node_modules
+.env
+.vscode
+test*.js
+circle.db
