@@ -23,6 +23,7 @@ export const data = new SlashCommandBuilder()
 // export let circleListMap = new Map();
 
 export async function execute(interaction) {
+  // ADDD CHECK FOR A VALID CIRCLE ID
   const circleTarget = interaction.options.getString("circle-id");
   const channelId = interaction.channelId;
   const quota = interaction.options.getString("quota");
@@ -35,10 +36,9 @@ export async function execute(interaction) {
     });
   }
 
-  const dbInsert = db.prepare(
-    "INSERT OR REPLACE INTO circle_list VALUES(?,?,?)",
-  );
-  dbInsert.run(channelId, circleTarget, quota.replaceAll(".", ""));
+  const dbInsert = db
+    .prepare("INSERT OR REPLACE INTO circle_list VALUES(?,?,?)")
+    .run(channelId, circleTarget, quota.replaceAll(".", ""));
 
   await interaction.reply({
     content: `This channel has been set to circle ${circleTarget} with quota ${quota.toLocaleString("ID")} per day`,

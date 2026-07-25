@@ -1,6 +1,6 @@
 import { MessageFlags, SlashCommandBuilder } from "discord.js";
 import { EmbedBuilder } from "discord.js";
-import umaFetch from "../../service/umaMoe/umaFetch.js";
+import umaFetch from "../../service/umaMoe/umaFetchCircle.js";
 import createTableUma from "../../service/umaMoe/table.js";
 import { shortenNumber } from "../../service/umaMoe/table.js";
 import db from "../../db/db.js";
@@ -47,7 +47,12 @@ export async function execute(interaction) {
   const embed = new EmbedBuilder()
     .setColor("#0062ff")
     .setTitle("Leader Board")
-    .setDescription("```" + finalData[0] + "```");
+    .setDescription("```" + finalData[0] + "```")
+    .setFooter({
+      text: "Data Taken From Uma.moe",
+      iconURL:
+        "https://pbs.twimg.com/profile_images/2007893454622171136/Vq2cg9RX_400x400.jpg",
+    });
 
   // embed2 is for players who managet to get below quota
   const embed2 = new EmbedBuilder()
@@ -57,6 +62,11 @@ export async function execute(interaction) {
     .addFields({
       name: "",
       value: `Data as of <t:${timeUnix}:F> from uma.moe`,
+    })
+    .setFooter({
+      text: "Data Taken From Uma.moe",
+      iconURL:
+        "https://pbs.twimg.com/profile_images/2007893454622171136/Vq2cg9RX_400x400.jpg",
     });
 
   // overview for the club

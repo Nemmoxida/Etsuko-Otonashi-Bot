@@ -1,5 +1,5 @@
 import { configDotenv } from "dotenv";
-import fs from "fs";
+// import fs from "fs";
 import path from "path";
 
 configDotenv();

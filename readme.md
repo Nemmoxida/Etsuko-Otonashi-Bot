@@ -8,7 +8,8 @@ Built using discord library for JS, discord.js. Currenly only provide info for m
 
 - Members fans monitoring and progression
 - Club daily fans progress overview
-- User fans target (WIP)
+- User fans target
+- Circles Search (Mainly for searching circle id)
 
 # Commands
 
@@ -30,6 +31,8 @@ Club daily overview
 
 ![daily overview](https://i.ibb.co.com/0ySpSCpY/Discord-hdl-ZNv99ut.png)
 
+And more
+
 # Dependencies
 
 - discord.js
@@ -48,7 +51,7 @@ cd *
 npm install
 
 npm run start
-# or if you have or using nodemon
+# if you have or using nodemon
 npm run nodemon-start
 ```
 
@@ -64,7 +67,6 @@ CLIENT_ID =
 
 # Feature to be added
 
-- User fans target (WIP)
-- Circle Id search
-- Fetch club data manual without registering club channel
-- Adding docker
+- Add docker
+- target fans reminder (private/direct message)
+- export data as csv

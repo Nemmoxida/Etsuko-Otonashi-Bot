@@ -11,7 +11,7 @@
     "better-sqlite3@12.11.1": true
   },
   "scripts": {
-    "start": "node ./app.js",
-    "nodemon-start": "nodemon ./app.js"
+    "start": "node -r dotenv/config ./app.js",
+    "nodemon-start": "nodemon -r dotenv/config ./app.js"
   }
 }
