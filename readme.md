@@ -6,16 +6,20 @@ Built using discord library for JS, discord.js. Currenly only provide info for m
 
 # Features
 
-- Members fans monitoring and progression
-- Club daily fans progress overview
-- User fans target
-- Circles Search (Mainly for searching circle id)
+- Members fans monitoring and progression.
+- Club daily fans progress overview.
+- User fans target.
+- Circles Search (Mainly for searching circle id).
+- Docker support.
 
 # Commands
 
-- /ping - quick test to check connection
-- /add-cirlce - add a circle id to the corresponding channel
-- /fetch-club - fetch club info and members progression
+- /ping - quick test to check connection.
+- /add-cirlce - add a circle id to the corresponding channel.
+- /fetch-club - fetch club info and members progression.
+- /set-target - set target to track account fans progress.
+- /check-target - check target that has been set with "/set-target".
+- /circle-search - search cirlce information (mostly to accuire circleId).
 
 # Demo
 
@@ -31,7 +35,7 @@ Club daily overview
 
 ![daily overview](https://i.ibb.co.com/0ySpSCpY/Discord-hdl-ZNv99ut.png)
 
-And more
+And more (check [commands.md](commands.md) for usage info)
 
 # Dependencies
 
@@ -57,7 +61,7 @@ npm run nodemon-start
 
 # Enviroment Variables
 
-Create a .env file using the .example.env format
+Create a .env file or add it into the compose.yaml if you use docker.
 
 ```env
 DISCORD_TOKEN =
@@ -67,6 +71,5 @@ CLIENT_ID =
 
 # Feature to be added
 
-- Add docker
-- target fans reminder (private/direct message)
-- export data as csv
+- target fans reminder (private/direct message).
+- export data as csv.
