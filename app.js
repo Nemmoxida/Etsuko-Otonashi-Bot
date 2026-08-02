@@ -52,6 +52,7 @@ for (const folder in commandFolder) {
 
 client.on(Events.InteractionCreate, async (interaction) => {
   // check if it's 2nd date of the month
+  // every month the target will be reset for all users
   if (new Date().getDate() == 2) {
     db.prepare("DELETE FROM user_target").run();
     db.exec(
@@ -65,6 +66,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       interaction.message.interactionMetadata?.id ?? interaction.message.id;
     const messageData = pagination.get(messageId);
 
+    // check if message is expire
     if (messageData.expire < Date.now()) {
       const embedExpire = new EmbedBuilder()
         .setColor("Red")
@@ -76,13 +78,19 @@ client.on(Events.InteractionCreate, async (interaction) => {
             "https://pbs.twimg.com/profile_images/2007893454622171136/Vq2cg9RX_400x400.jpg",
         });
 
+      pagination.delete(messageId);
+
       return interaction.update({ embeds: [embedExpire] });
     }
 
     let page = 0;
 
+    /**
+     * will check page number in the pagination Map
+     *
+     */
     if (interaction.customId == "next") {
-      page = Math.min(messageData.page + 1, messageData.data.length);
+      page = Math.min(messageData.page + 1, messageData.data.length - 1);
     }
     if (interaction.customId == "prev") {
       page = Math.max(messageData.page - 1, 0);
@@ -129,5 +137,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
     }
   }
 });
+
+console.log("Discord Token: " + process.env.DISCORD_TOKEN);
 
 client.login(process.env.DISCORD_TOKEN);

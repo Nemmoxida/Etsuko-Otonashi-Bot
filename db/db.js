@@ -1,6 +1,12 @@
 import Database from "better-sqlite3";
+import path from "node:path";
 
-const db = new Database("master.db");
+let db = undefined;
+
+db = new Database(path.resolve(process.cwd(), "/db/data/master.db"));
+console.log(path.resolve(process.cwd(), "/db/data/master.db"));
+
+// const db = ;
 
 // db for fans target
 db.exec(

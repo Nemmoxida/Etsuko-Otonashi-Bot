@@ -33,6 +33,7 @@ export const data = new SlashCommandBuilder()
       .setRequired(false),
   );
 
+// storing message data for pagination purpose
 export let pagination = new Map();
 
 export async function execute(interaction) {
@@ -41,11 +42,18 @@ export async function execute(interaction) {
   const leaderId = interaction.options.getString("leader-id") || "";
   const isPublic = interaction.options.getString("is-public") || 0;
 
+  /**
+   * message will be stored into a Map object with
+   * discord message id as the key and paginationObj as the value
+   * paginationObj.data is an array that stored the circle list data
+   * it is a 2d array with each x array containing 5 cicle data
+   */
+
   const data = await umaFetchCircleInfo(circleName, leaderId);
   const embedArray = [];
   const paginationObj = {
     page: 0,
-    expire: 0,
+    expire: 0, // the expire is one hour
     data: [],
   };
 
@@ -75,6 +83,7 @@ export async function execute(interaction) {
         "https://pbs.twimg.com/profile_images/2007893454622171136/Vq2cg9RX_400x400.jpg",
     });
 
+  // button  for navigation
   const row = new ActionRowBuilder().addComponents(
     new ButtonBuilder()
       .setCustomId("next")
@@ -105,7 +114,7 @@ export async function execute(interaction) {
 
   //   console.log(paginationObj);
   const savedData = structuredClone(paginationObj);
-  pagination.set(message.interaction.id, savedData);
+  pagination.set(message.interaction.id, savedData); // save it to Map object
 
   paginationObj.data.splice(0, paginationObj.data.length);
 }

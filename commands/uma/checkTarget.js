@@ -51,10 +51,11 @@ export async function execute(interaction) {
     inline: true,
   });
 
+  // for calculating user's progress
   const targetResult = data.target - userData.monthlyGain;
   const dateDiff = Math.abs(new Date().getDate() - data.target);
 
-  //
+  // determining user's progress result
   if (targetResult > 0) {
     embed.addFields({
       name: "Result",
